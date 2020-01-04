@@ -15,6 +15,7 @@ def do_pack():
         '''
         '''
         now = datetime.datetime.now()
-        get(remote_path="/data/web_static/",
+        get_status = get(remote_path="/data/web_static/",
             local_path="/versions/web_static_{}{}{}{}{}{}.tgz".format
             (now.year, now.month, now.day, now.hour, now.minute, now.second))
+        return get_status
