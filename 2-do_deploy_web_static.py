@@ -4,7 +4,7 @@
 from fabric.api import *
 from time import strftime
 from os import path
-
+import sys
 env.hosts = [
     '35.227.43.49',
     '35.231.164.230'
@@ -44,6 +44,8 @@ def do_deploy(archive_path):
         run("sudo rm -rf /data/web_static/releases/{}/web_static".format(name_alone))
         run("sudo rm -rf /data/web_static/current")
         run("sudo ln -s /data/web_static/releases/{} /data/web_static/current".format(name_alone))
+        print("New version deployed!")
+
         return True
     except:
         return False
