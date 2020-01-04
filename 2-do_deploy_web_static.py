@@ -9,8 +9,8 @@ env.hosts = [
     '35.227.43.49',
     '35.231.164.230'
 ]
-env.user = "ubuntu"
-env.key_filename = './holberton'
+#env.user = "ubuntu"
+#env.key_filename = './holberton'
 
 
 def do_pack():
