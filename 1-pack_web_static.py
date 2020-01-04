@@ -12,10 +12,14 @@ env.key_filename = './holberton'
 
 
 def do_pack():
-        '''
-        '''
-        now = datetime.datetime.now()
-        get_status = get(remote_path="/data/web_static/",
+    '''
+    '''
+    now = datetime.datetime.now()
+    try:
+        get(remote_path="/data/web_static/",
             local_path="/versions/web_static_{}{}{}{}{}{}.tgz".format
             (now.year, now.month, now.day, now.hour, now.minute, now.second))
-        return get_status
+    except:
+        return None
+    return "/versions/web_static_{}{}{}{}{}{}.tgz".format
+    (now.year, now.month, now.day, now.hour, now.minute, now.second)
