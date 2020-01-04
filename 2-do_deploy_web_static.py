@@ -4,14 +4,14 @@ module comment
 '''
 from fabric.api import *
 from time import strftime
-from os import path
+import os
 
 env.hosts = [
     '35.227.43.49',
     '35.231.164.230'
 ]
 env.user = "ubuntu"
-env.key_filename = './holberton'
+#env.key_filename = './holberton'
 
 
 def do_pack():
@@ -32,7 +32,7 @@ def do_deploy(archive_path):
     '''
     Fabric script that distributes an archive to the web servers,
     '''
-    if not path.isfile(archive_path):
+    if not os.path.isfile(archive_path):
         return False
 
     try:
