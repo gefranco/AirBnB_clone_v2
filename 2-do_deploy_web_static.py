@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 '''
+module comment
 '''
 from fabric.api import *
 from time import strftime
@@ -15,6 +16,7 @@ env.key_filename = './holberton'
 
 def do_pack():
     '''
+    generates a .tgz archive from the contents of the web_static
     '''
     now = strftime("%Y%m%d%H%M%S")
     try:
@@ -28,6 +30,7 @@ def do_pack():
 
 def do_deploy(archive_path):
     '''
+    Fabric script that distributes an archive to the web servers,
     '''
     if not path.isfile(archive_path):
         return False
