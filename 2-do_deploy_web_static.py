@@ -33,7 +33,7 @@ def do_deploy(archive_path):
         return False
 
     try:
-        name_archive = archive_path.split("/")[1]
+        name_archive = archive_path.split("/")[-1]
         name_alone = name_archive.split(".")[0]
         put(archive_path, "/tmp/")
         run("sudo mkdir -p /data/web_static/releases/{}".format(name_alone))
