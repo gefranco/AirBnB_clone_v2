@@ -29,8 +29,7 @@ def do_pack():
 def do_deploy(archive_path):
     '''
     '''
-    if path.isfile(archive_path) is False:
-        print("no file")
+    if not os.path.isfile(archive_path):
         return False
 
     try:
@@ -38,7 +37,7 @@ def do_deploy(archive_path):
         name_alone = name_archive.split(".")[0]
         put(archive_path, "/tmp/")
         run("sudo mkdir /data/web_static/releases/{}".format(name_alone))
-        run("sudo tar -xvzf /tmp/{} -C /data/web_static/releases/{}".format(
+        run("sudo tar -xzf /tmp/{} -C /data/web_static/releases/{}".format(
             name_archive, name_alone))
         run("sudo rm /tmp/{}".format(name_archive))
         run("sudo mv /data/web_static/releases/{}/web_static/* \
