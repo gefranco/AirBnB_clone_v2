@@ -43,7 +43,7 @@ def do_deploy(archive_path):
         run("sudo tar -xvzf /tmp/{} -C /data/web_static/releases/{}/".format(
             name_archive, name_alone))
         run("sudo rm /tmp/{}".format(name_archive))
-        run("sudo mv /data/web_static/releases/{}/web_static/*\
+        run("sudo mv /data/web_static/releases/{}/web_static/* \
 /data/web_static/releases/{}/".format(name_alone, name_alone))
         run("sudo rm -rf /data/web_static/releases/{}/web_static".format(
             name_alone))
