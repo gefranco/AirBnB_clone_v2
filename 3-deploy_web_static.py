@@ -19,7 +19,7 @@ def do_pack():
     now = strftime("%Y%m%d%H%M%S")
     try:
         local("sudo mkdir -p versions")
-        local("sudo tar -cvzf versions/web_static{}.tgz web_static".format(
+        local("sudo tar -cvzf versions/web_static_{}.tgz web_static".format(
             now))
     except:
         return None
@@ -37,7 +37,7 @@ def do_deploy(archive_path):
         name_archive = archive_path.split("/")[1]
         name_alone = name_archive.split(".")[0]
         put(archive_path, "/tmp/")
-        run("sudo mkdir -p /data/web_static/releases/{}".format(name_alone))
+        run("sudo mkdir /data/web_static/releases/{}".format(name_alone))
         run("sudo tar -xvzf /tmp/{} -C /data/web_static/releases/{}".format(name_archive, name_alone))
         run("sudo rm /tmp/{}".format(name_archive))
         run("sudo mv /data/web_static/releases/{}/web_static/* /data/web_static/releases/{}".format(name_alone, name_alone))
