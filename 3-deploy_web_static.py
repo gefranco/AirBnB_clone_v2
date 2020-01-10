@@ -29,7 +29,7 @@ def do_pack():
 def do_deploy(archive_path):
     '''
     '''
-    if not path.exists(archive_path):
+    if path.isfile(archive_path) is False:
         print("no file")
         return False
 
