@@ -92,4 +92,5 @@ class DBStorage:
         return all_objs
             
 
-
+    def close(self):
+        self.__session.remove()
