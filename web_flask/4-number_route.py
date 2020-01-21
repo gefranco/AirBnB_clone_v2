@@ -30,6 +30,5 @@ def number(n):
     return '%d is a number' % n
 
 
-
 if __name__ == '__main__':
     app.run()
