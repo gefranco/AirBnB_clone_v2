@@ -19,7 +19,9 @@ class DBStorage:
     __engine = None
     __session = None
 
-    __dict_cls = {"State": State}
+    __dict_cls = {"State": State,
+		  "City": City
+		}
 	
     def __init__(self):
         self.__engine = create_engine(
