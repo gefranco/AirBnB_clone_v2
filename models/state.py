@@ -6,6 +6,8 @@ from models.base_model import BaseModel, Base
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 import os
+
+
 class State(BaseModel, Base):
     """This is the class for State
     Attributes:
@@ -22,8 +24,6 @@ class State(BaseModel, Base):
             all_objs = models.storage.all(City)
 
             for city in all_objs.values():
-
-
                 if city.state_id == self.id:
                     all_objs_list.append(city)
             return all_objs_list

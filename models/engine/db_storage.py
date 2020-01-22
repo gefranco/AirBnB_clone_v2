@@ -13,43 +13,42 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
+
 class DBStorage:
     '''
     '''
     __engine = None
     __session = None
 
-    __dict_cls = {"State": State,
-		  "City": City
-		}
-	
+    __dict_cls = {
+                "State": State,
+                "City": City
+                }
+
     def __init__(self):
         self.__engine = create_engine(
             'mysql+mysqldb://{}:{}@localhost/{}'
             .format(os.getenv("HBNB_MYSQL_USER"),
-            os.getenv("HBNB_MYSQL_PWD"), 
-            os.getenv("HBNB_MYSQL_DB")),
-            pool_pre_ping=True)
+                    os.getenv("HBNB_MYSQL_PWD"),
+                    os.getenv("HBNB_MYSQL_DB")),
+            pool_pre_ping=True
+            )
 
         if os.getenv("HBNB_ENV") == "test":
             Base.metadata.drop_all(bind=self.__engine)
-        
-
-
-
-
 
     def reload(self):
         Base.metadata.create_all(self.__engine)
-        session_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
+        session_factory = sessionmaker(
+                                        bind=self.__engine,
+                                        expire_on_commit=False)
+
         self.__session = scoped_session(session_factory)
-    
+
     def new(self, obj):
 
         if obj:
             self.__session.add(obj)
-            
-    
 
     def save(self):
         self.__session.commit()
@@ -60,7 +59,7 @@ class DBStorage:
             self.save()
 
     def all(self, cls=None):
-        all_objs = {} 
+        all_objs = {}
 
         if cls:
             for obj in self.__session.query(self.__dict_cls[cls]):
@@ -76,7 +75,6 @@ class DBStorage:
             for obj in self.__session.query(State):
                 key = "{}.{}".format(type(obj).__name__, obj.id)
                 all_objs[key] = obj
-            
             for obj in self.__session.query(City):
                 key = "{}.{}".format(type(obj).__name__, obj.id)
                 all_objs[key] = obj
@@ -94,7 +92,6 @@ class DBStorage:
                 all_objs[key] = obj
 
         return all_objs
-            
 
     def close(self):
         self.__session.remove()
